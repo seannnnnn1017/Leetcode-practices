@@ -1,17 +1,18 @@
 class Solution:
-    def leastBricks(self, A=[   [1,2,2,1],
-                                [3,1,2],
-                                [1,3,2],
-                                [2,4],
-                                [3,1,2],
-                                [1,3,1,1]]) -> int:
-        edge={}
-        for i in len(A):
-            position=0
-            for j in len(A[i]):
-                if position ==0:
-                    edge[A[i][j]]=1
-                    break
-        return 0
+    def letterCombinations(self, digits='23'):
+        if not digits:
+            return []
+        L=[]
+        map = {"2":"abc","3":"def","4":"ghi","5":"jkl","6":"mno","7":"pqrs","8":"tuv","9":"wxyz"}
 
-Solution.leastBricks(None)
+        def com(combination,digit):
+            if not digit:
+                return L.append(combination)
+                
+            digit_str=map[digit[0]]
+            for letter in digit_str:
+                com(combination+letter,digit[1:])
+            return L
+        return com("",digits)
+
+Solution.letterCombinations(1)
